@@ -1,0 +1,218 @@
+% Capítulo 2
+%----------------------------------------------
+\chapter{Referencial teórico}
+\label{cap:capitulo2}
+% label do capítulo para usar como referência no texto
+%----------------------------------------------
+
+Breve resumo do que será apresentado no capítulo.
+
+ %----------------------------------------------
+\section{Dicas para utilização do \LaTeX}
+%----------------------------------------------
+
+Parágrafo de introdução.
+
+%----------------------------------------------
+\subsection{Dicas gerais}
+%----------------------------------------------
+
+\textbf{Não} utilizar aspas duplas, exemplo "aspas".  Utilizar duas crases para abrir aspas (\`{}\`{}) e duas aspas simples (\textquotesingle\textquotesingle) para fechar. Resultado fica ``assim''. 
+
+No \LaTeX, o til (\~{}) pode ser utilizado para significar um espaço em branco sem permitir a quebra de linha neste local. Ou seja, quando utilizado desta forma ``\verb|Tabela~\ref{tab:exemplo}|'', não vai haver quebra de linha entre a palavra ``Tabela'' e o seu número ``1'', por exemplo. Desta forma, é recordável a utilização em todas as referências cruzadas (tabelas, figuras, algoritmos, quadros, etc) (e.g., \verb|~\ref{}|) e também em citações (e.g., \verb|~\cite{}|).
+
+
+%----------------------------------------------
+\subsection{Referências a figuras, tabelas, seções}
+\label{sec:usarLabels}
+%----------------------------------------------
+
+Utilizar a tag \verb|\label{}| para adicionar nomes aos elementos e depois usar a tag \verb|\ref{}| para referenciar. Exemplo referenciando a Seção~\ref{sec:usarLabels}. 
+
+%----------------------------------------------
+\subsection{ToDo Notes}
+%----------------------------------------------
+
+Utilizar as macros de notas. 
+
+\verb|\parafazer{}|
+\parafazer{Atividade/Ações/Escritas que ainda precisam ser realizadas.}
+
+\verb|\duvida{}|
+\duvida{Deixe sua duvida registrada aqui.}
+
+\verb|\lembrete{}|
+\lembrete{Deixar um comentário, uma observação.}
+
+Não é necessário apagar ou comentar as notas manualmente para que elas não apareçam no PDF, basta adicionar ``disable'' na inserção do pacote.
+
+\begin{verbatim}
+Arquivo -> dissertacao.tex 
+Linha ->   \usepackage[disable,colorinlistoftodos]{todonotes}.
+\end{verbatim}
+
+%---------------------------------------------- 
+\subsection{Notas de rodapé}
+%----------------------------------------------
+
+Texto\footnote{https://www.google.com} é um mecanismo de automação utilizado
+	    
+%----------------------------------------------
+\subsection{Figuras}
+%----------------------------------------------
+
+A Figura~\ref{fig:figuraTeste} exibe ...
+
+O código de inserção das figuras deve \textbf{sempre} estar localizado abaixo da primeira referência a esta. O próprio \LaTeX vai posicionar a imagem. Utilizar a tag \verb|[!htb]|.
+
+% exemplo de figura
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{example-image-a}
+    % pode tem ser definido o tamanho da figura 
+    %width = largura
+    %height = altura
+    %\includegraphics[width=10cm,height=10cm]{Imagens/FiguraTeste.png}
+    \caption{Legenda da figura} 
+    % label é utilizado para referenciar a figura no texto
+    % A Figura~\ref{fig:figuraTeste} exibe ...
+    \label{fig:figuraTeste}
+\end{figure}
+
+
+Para referenciar a figura inteira, utilizar \verb|~\ref{fig:2imagens}|, ex. Figura~\ref{fig:2imagens}. Para referenciar somente A, utilizar \verb|~\ref{fig:labelFigA}|, ex. Figura~\ref{fig:labelFigA} e somente B utilizar \verb|~\ref{fig:labelFigB}|, ex. Figura~\ref{fig:labelFigB}.
+
+\begin{figure}[!htp]
+        \centering
+        \begin{subfigure}[t]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{example-image-a}
+                \caption{} % se quiser adicionar descrição ao lado de (a)
+                \label{fig:labelFigA}
+        \end{subfigure}       
+        \begin{subfigure}[t]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{example-image-b}
+                \caption{}
+                \label{fig:labelFigB}
+        \end{subfigure}
+        %\vspace{-2\baselineskip} % ajustar a posição da legenda, se for necessário. Negativo aproxima da imagem, Positivo afasta
+        \caption{Duas imagens e somente uma legenda}\label{fig:2imagens}
+\end{figure}
+
+
+\begin{figure}
+\centering
+  \begin{subfigure}[t]{.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{example-image-a}
+    \caption{\textbf{Schnitt}: $A \cup B$: Element liegt in $A$ \textbf{oder} in $B$.}
+  \end{subfigure}
+  %\hfill % adicionar espaço entre as imagens
+  \begin{subfigure}[t]{.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{example-image-b}
+    \caption{\textbf{Vereinigung}: $A \cap B$: Element liegt in $A$ \textbf{und} in $B$.}
+  \end{subfigure}
+  \begin{subfigure}[t]{.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{example-image-c}
+    \caption{\textbf{Differenz}: $A \setminus B$: Element liegt in $A$ \textbf{nicht} in $B$. (\textit{A ohne B})}
+  \end{subfigure}
+  %\hfill % adicionar espaço entre as imagens
+  \begin{subfigure}[t]{.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{example-image-a}
+    \caption{\textbf{Symmetrische Differenz}: $A \Delta B$: Element liegt \textbf{entweder} in $A$ oder in $B$.}
+  \end{subfigure}
+  \caption{Quatro imagens lado a lado}\label{fig:4imagens} 
+\end{figure}
+
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{.45\linewidth}
+\includegraphics[width=\linewidth]{example-image-a}
+\caption{A mouse}\label{fig:mouse}
+\end{subfigure}
+\begin{subfigure}[b]{.45\linewidth}
+\includegraphics[width=\linewidth]{example-image-b}
+\caption{A gull}\label{fig:gull}
+\end{subfigure}
+\begin{subfigure}[b]{.45\linewidth}
+\includegraphics[width=\linewidth]{example-image-c}
+\caption{A tiger}\label{fig:tiger}
+\end{subfigure}
+\caption{Picture of animals}
+\label{fig:animals}
+\end{figure}
+
+%----------------------------------------------
+\subsection{Indicar alterações no texto.}
+%----------------------------------------------
+
+Utilize \verb|\removido{}| para marcar um texto antigo, que será removido. Exemplo, \removido{texto a ser removido na próxima revisão.} 
+
+Utilize \verb|\novo{}| para marcar os novos textos inseridos depois de uma revisão. Exemplo, \novo{Colocar aqui os novos textos inseridos, facilitando assim as revisões futuras.} 
+
+Exemplo de Algoritmo~\ref{alg:alg1}.
+
+\begin{algorithm} % enter the algorithm environment
+\caption{Nome do algoritmo} % give the algorithm a caption
+\label{alg:alg1} % and a label for \ref{} commands later in the document
+\begin{algorithmic}[1] % enter the algorithmic environment
+                       % [1] insere numeração de linhas
+    \REQUIRE $n \geq 0 \vee x \neq 0$
+    \ENSURE $y = x^n$ \COMMENT{some comment here}
+    \STATE $y \Leftarrow 1$
+    \IF{$n < 0$}
+        \STATE $X \Leftarrow 1 / x$
+        \STATE $N \Leftarrow -n$
+    \ELSE
+        \STATE $X \Leftarrow x$
+        \STATE $N \Leftarrow n$
+    \ENDIF
+    \WHILE{$N \neq 0$}
+        \IF{$N$ is even}
+            \STATE $X \Leftarrow X \times X$
+            \STATE $N \Leftarrow N / 2$
+        \ELSE  [$N$ is odd]
+            \STATE $y \Leftarrow y \times X$
+            \STATE $N \Leftarrow N - 1$
+        \ENDIF
+    \ENDWHILE
+    \FOR{xxxx}
+        \STATE $X \Leftarrow x$
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}
+\caption{Calculate $y = x^n$}
+\label{alg1}
+\begin{multicols}{2}
+\begin{algorithmic}[1]
+  \REQUIRE $n \geq 0 \vee x \neq 0$
+  \ENSURE $y = x^n$
+  \STATE $y \Leftarrow 1$
+  \IF{$n < 0$}
+  \STATE $X \Leftarrow 1 / x$
+  \STATE $N \Leftarrow -n$
+  \ELSE
+  \STATE $X \Leftarrow x$
+  \STATE $N \Leftarrow n$
+  \ENDIF
+  \WHILE{$N \neq 0$}
+  \IF{$N$ is even}
+  \STATE $X \Leftarrow X \times X$
+  \STATE $N \Leftarrow N / 2$
+  \ELSE [$N$ is odd]
+  \STATE $y \Leftarrow y \times X$
+  \STATE $N \Leftarrow N - 1$
+  \ENDIF
+  \ENDWHILE
+\end{algorithmic}
+\end{multicols}
+\end{algorithm}
+

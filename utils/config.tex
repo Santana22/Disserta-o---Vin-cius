@@ -1,0 +1,169 @@
+
+% ---
+% PACOTES BASICOS
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+
+
+%------------------------------------------------
+%\usepackage[brazil]{babel}
+\usepackage{dsfont}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{url}
+%\usepackage{abntcite}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{alg}
+%\usepackage{hyperref}
+\usepackage{caption} 
+\usepackage{subcaption} % for subfigures
+
+% para usar os comentários nos algoritmos
+% conforme definido mais abaixo em:
+% \renewcommand{\algorithmiccomment}[1]{\hfill\eqparbox{}{\# #1}}
+\usepackage{eqparbox}
+
+% exibe somente capitulo, seção e subseção
+\setcounter{tocdepth}{2}
+
+\newcommand{\abreviarEN}[2][abreviatura]{(\abrv[#1 -- #2]{#1}, do inglês \textit{#2})}
+
+%------------------------------------------------
+
+
+
+% ---
+% PACOTES ADICIONAIS, USADOS APENAS NO ÂMBITO DO MODELO CANÔNICO DO abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+
+% ---
+% PACOTES DE CITAÇÕES
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% ---
+% PACOTES ADICIONADOS POR CEPHAS
+% ---
+\usepackage{float}
+\usepackage{amssymb,amsmath}
+\usepackage{pdfpages}
+\usepackage{acronym}
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% utilizando o todo notes para deixar comentários
+\setlength {\marginparwidth }{2cm}
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[disable,colorinlistoftodos]{todonotes}
+\newcommand{\duvida}[1]{\todo[color=yellow, inline, textcolor=black]{\texttt{Duvida:} #1}}
+\newcommand{\lembrete}[1]{\todo[color=lightgray, inline, textcolor=black]{\texttt{Lembrete:} #1}}
+\newcommand{\parafazer}[1]{\todo[color=green, inline, textcolor=black]{\texttt{Para Fazer:} #1}}
+
+% Macros para indicar modificações no texto
+\usepackage[normalem]{ulem}
+\newcommand{\removido}[1]{\textcolor{red}{\sout{#1}}}
+\newcommand{\novo}[1]{\textcolor{blue}{#1}}
+
+% Macros para remover as modificações de texto na versão final
+% comentar acima e descomentar abaixo na versão final
+% \newcommand{\removido}[1]{}
+% \newcommand{\novo}[1]{#1}
+% \renewcommand*{\sout}{}
+
+% Para poder ter tabelas com colunas de largura auto-ajustável
+\usepackage{tabularx}
+
+% Redefinicao de instrucoes
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saída:}}
+\renewcommand{\algorithmicend}{\textbf{fim}}
+\renewcommand{\algorithmicif}{\textbf{se}}
+\renewcommand{\algorithmicthen}{\textbf{então}}
+\renewcommand{\algorithmicelse}{\textbf{senão}}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicforall}{\textbf{para todo}}
+\renewcommand{\algorithmicdo}{\textbf{faça}}
+\renewcommand{\algorithmicwhile}{\textbf{enquanto}}
+\renewcommand{\algorithmicloop}{\textbf{loop}}
+\renewcommand{\algorithmicrepeat}{\textbf{repetir}}
+\renewcommand{\algorithmicuntil}{\textbf{até que}}
+\renewcommand{\algorithmiccomment}[1]{\hfill\eqparbox{}{\# #1}}
+
+% Definicao da lista de simbolos
+% \simb[entrada na lista de simbolos]{simbolo}:
+% Escreve o simbolo no texto e uma entrada na lista de simbolos.
+% Se o parametro opcional e omitido, usa-se o parametro obrigatorio.
+\newcommand{\simb}[2][]
+{%
+	\ifthenelse{\equal{#1}{}}
+	{\addcontentsline{los}{simbolo}{#2}}
+	{\addcontentsline{los}{simbolo}{#1}}#2
+}
+% Para aceitar comandos com @ (at) no nome
+\makeatletter 
+% \listadesimbolos: comando que imprime a lista de simbolos
+\newcommand{\listadesimbolos}
+{
+	\pretextualchapter{Lista de símbolos}
+	{\setlength{\parindent}{0cm}
+	\@starttoc{los}}
+}
+% Como a entrada sera impressa
+\newcommand\l@simbolo[2]{\par #1}
+\makeatother
+
+% Definicao da lista de abreviaturas e siglas
+% \abrv[entrada na lista de simbolos]{abreviatura}:
+% Escreve a sigla/abreviatura no texto e uma entrada na lista de abreviaturas e siglas.
+% Se o parametro opcional e omitido, usa-se o parametro obrigatorio.
+\newcommand{\abrv}[2][]
+{%
+	\ifthenelse{\equal{#1}{}}
+	{\addcontentsline{loab}{abreviatura}{#2}}
+	{\addcontentsline{loab}{abreviatura}{#1}}#2
+}
+% Para aceitar comandos com @ (at) no nome
+\makeatletter 
+% \listadeabreviaturas: comando que imprime a lista de abreviaturas e siglas
+\newcommand{\listadeabreviaturas}
+{
+	\pretextualchapter{Lista de abreviaturas e siglas}
+	{\setlength{\parindent}{0cm}
+	\@starttoc{loab}}
+}
+% Como a entrada sera impressa
+\newcommand\l@abreviatura[2]{\par #1}
+\makeatother
+
+% \listofalgorithms: comando que imprime a lista de algoritmos
+\renewcommand{\listalgorithmname}{Lista de algoritmos}
